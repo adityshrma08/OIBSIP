@@ -1,16 +1,20 @@
-function appendToDisplay(value){
-    document.getElementById('display').value += value;
+function appendToDisplay(value) {
+    const display = document.getElementById('display');
+    display.value += value;
 }
 
-function clearDisplay(){
+function clearDisplay() {
     document.getElementById('display').value = '';
 }
 
-function calculate(){
-    try{
-        const result = eval(document.getElementById('display').value);
-        document.getElementById('display').value = result;
-    }catch(error){
-        document.getElementById('display').value = 'Error';
+function calculate() {
+    const display = document.getElementById('display');
+    try {
+        display.value = eval(display.value) || '';
+    } catch {
+        display.value = 'Error';
+        setTimeout(() => {
+            clearDisplay();
+        }, 1500);
     }
 }
